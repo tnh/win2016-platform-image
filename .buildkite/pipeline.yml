@@ -4,3 +4,4 @@ env:
 steps:
   - name: ':packer: pack'
     command: 'make pack'
+    artifact_paths: 'TestResults.xml'
