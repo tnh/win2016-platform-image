@@ -10,7 +10,7 @@
       "instance_type": "t2.micro",
       "vpc_id": "{{user `vpc_id`}}",
       "subnet_id": "{{user `subnet_id`}}",
-      "user_data_file": "./scripts/SetUpWinRM.ps1",
+      "user_data_file": "/workdir/scripts/SetUpWinRM.ps1",
       "communicator": "winrm",
       "winrm_username": "Administrator",
       "winrm_use_ssl": true,
@@ -36,24 +36,24 @@
       {
           "type": "powershell",
           "scripts": [
-              "./scripts/EC2Config.ps1",
-              "./scripts/BundleConfig.ps1",
-              "./scripts/SetUpDevTools.ps1"
+              "/workdir/scripts/EC2Config.ps1",
+              "/workdir/scripts/BundleConfig.ps1",
+              "/workdir/scripts/SetUpDevTools.ps1"
           ]
       },
       {
           "type": "file",
-          "source": "./tests",
+          "source": "/workdir/tests",
           "destination": "C:/Windows/Temp"
       },
       {
           "type": "powershell",
-          "script": "./scripts/RunTests.ps1"
+          "script": "/workdir/scripts/RunTests.ps1"
       },
       {
           "type": "file",
           "source": "TestResults.xml",
-          "destination": "TestResults.xml",
+          "destination": "/workdir/TestResults.xml",
           "direction": "download"
       }
   ],
