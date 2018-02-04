@@ -6,4 +6,3 @@ gem "test-kitchen"
 gem "kitchen-ec2"
 gem "winrm"
 
-gem "kitchen-vagrant"

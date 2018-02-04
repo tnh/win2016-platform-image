@@ -1,4 +1,4 @@
-.PHONY: pack
+.PHONY: pack test
 
 VPC_ID ?= 123
 SUBNET_ID ?= 123
