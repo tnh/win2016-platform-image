@@ -1,0 +1,65 @@
+{
+  "variables": {
+    "vpc_id": "{{env `VPC_ID`}}",
+    "subnet_id": "{{env `SUBNET_ID`}}"
+  },
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "region": "ap-southeast-2",
+      "instance_type": "t2.micro",
+      "vpc_id": "{{user `vpc_id`}}",
+      "subnet_id": "{{user `subnet_id`}}",
+      "user_data_file": "./scripts/SetUpWinRM.ps1",
+      "communicator": "winrm",
+      "winrm_username": "Administrator",
+      "winrm_use_ssl": true,
+      "winrm_insecure": true,
+      "source_ami_filter": {
+          "filters": {
+            "name": "Windows_Server-2012-R2_RTM-English-64Bit-Base-*"
+          },
+          "owners": ["801119661308"],
+          "most_recent": true
+      },
+      "ami_name": "win16-platform-ami{{timestamp}}",
+      "ami_description": "Cevo Amazon Win16 Platform AMI",
+      "tags": {
+        "Name": "Cevo Amazon Win16 Pltform AMI",
+        "Application": "common",
+        "Owner": "someone@cevo.com.au",
+        "Date": "{{isotime}}"
+      }
+    }
+  ],
+  "provisioners": [
+      {
+          "type": "powershell",
+          "scripts": [
+              "./scripts/EC2Config.ps1",
+              "./scripts/BundleConfig.ps1",
+              "./scripts/SetUpDevTools.ps1"
+          ]
+      },
+      {
+          "type": "file",
+          "source": "./tests",
+          "destination": "C:/Windows/Temp"
+      },
+      {
+          "type": "powershell",
+          "script": "./scripts/RunTests.ps1"
+      },
+      {
+          "type": "file",
+          "source": "TestResults.xml",
+          "destination": "TestResults.xml",
+          "direction": "download"
+      }
+  ],
+  "post-processors": [
+      {
+          "type": "manifest"
+      }
+  ]
+}
