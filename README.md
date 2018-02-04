@@ -1,7 +1,6 @@
-# foundation docker continers
+# win2016 baking amis
 
-A project that builds and publishes a set of docker containers that should be used a foundation for a packaged app
-
-Consider this project akin of a 'platform VM' 
+starting point:
+https://github.com/SkeltonThatcher/packer-bamboo
 
 
