@@ -10,4 +10,4 @@ AWS_ACCESS_KEY_ID ?= notreal
 all: pack
 
 pack:
-	docker run -it -e $(AWS_SECRET_ACCESS_KEY) -e $(AWS_SESSION_TOKEN) -e $(AWS_ACCESS_KEY_ID) -e $(VPC_ID) -e $(SUBNET_ID) -v ${PWD}/packer:/workdir hashicorp/packer:light build /workdir/win2016.json
+	docker run -it -e AWS_SECRET_ACCESS_KEY -e AWS_SESSION_TOKEN -e AWS_ACCESS_KEY_ID -e VPC_ID -e SUBNET_ID -v ${PWD}/packer:/workdir hashicorp/packer:light build /workdir/win2016.json
