@@ -4,4 +4,9 @@ env:
 steps:
   - name: ':packer: pack'
     command: 'make pack'
-    artifact_paths: 'TestResults.xml'
+    artifact_paths: 'packer/TestResults.xml,packer/manifest.json'
+
+  - wait
+
+  - name: ':hammer: test'
+    command: 'make test'
