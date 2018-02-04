@@ -29,13 +29,13 @@
       "ami_name": "win16-platform-ami{{timestamp}}",
       "ami_description": "Cevo Amazon Win16 Platform AMI",
       "run_tags": {
-        "Name": "Cevo Amazon Win16 Pltform AMI",
+        "Name": "Cevo Amazon Win16 Platform AMI",
         "Application": "baking-win16",
         "Owner": "someone@cevo.com.au",
         "Date": "{{isotime}}"
       },
       "tags": {
-        "Name": "Cevo Amazon Win16 Pltform AMI",
+        "Name": "Cevo Amazon Win16 Platform AMI",
         "Application": "Platform Win16",
         "Owner": "someone@cevo.com.au",
         "Date": "{{isotime}}",
@@ -72,7 +72,8 @@
   ],
   "post-processors": [
       {
-          "type": "manifest"
-      }
+        "type": "manifest",
+        "output": "manifest.json",
+        "strip_path": true      }
   ]
 }

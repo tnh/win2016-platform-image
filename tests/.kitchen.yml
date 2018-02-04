@@ -1,0 +1,31 @@
+---
+driver:
+  name: ec2
+  aws_ssh_key_id: <%= ENV['KITCHEN_SSH_KEY_NAME'] %>
+  region: ap-southeast-2
+  subnet_id: <%= ENV['SUBNET_ID'] %>
+  instance_type: t2.medium
+  associate_public_ip: false
+
+transport:
+  ssh_key:  <%= ENV['KITCHEN_SSH_KEY_PEM'] %>
+  connection_timeout: 10
+  connection_retries: 5
+  username: ec2-user
+
+# Busser runs the tests, and assumes that the ChefDK is installed by default.
+# Because we are not using Chef, we need to tell it to use the system Ruby.
+#  (see: https://github.com/test-kitchen/test-kitchen/issues/347)
+busser:
+  ruby_bindir: /usr/bin
+
+provisioner:
+  name: shell
+
+platforms:
+  - name: windows
+    driver:
+        image_id: <%= ENV['SERVER_IMAGE_ID'] %>
+
+suites:
+  - name: default
