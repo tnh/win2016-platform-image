@@ -19,6 +19,8 @@
       "associate_public_ip_address": false,
       "winrm_use_ssl": true,
       "winrm_insecure": true,
+      "spot_price": "auto",
+      "spot_price_auto_product": "Windows (Amazon VPC)",
       "source_ami_filter": {
           "filters": {
             "name": "Windows_Server-2012-R2_RTM-English-64Bit-Base-*"
