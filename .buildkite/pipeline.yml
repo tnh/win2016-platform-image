@@ -4,7 +4,7 @@ env:
 steps:
   - name: ':packer: pack'
     command: 'make pack'
-    artifact_paths: 'packer/TestResults.xml,packer/manifest.json'
+    artifact_paths: 'output/*'
 
   - wait
 

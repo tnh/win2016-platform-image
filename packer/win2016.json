@@ -66,14 +66,14 @@
       {
           "type": "file",
           "source": "TestResults.xml",
-          "destination": "/workdir/TestResults.xml",
+          "destination": "/workdir/output/TestResults.xml",
           "direction": "download"
       }
   ],
   "post-processors": [
       {
         "type": "manifest",
-        "output": "manifest.json",
+        "output": "/workdir/output/manifest.json",
         "strip_path": true      }
   ]
 }
