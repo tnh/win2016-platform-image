@@ -13,6 +13,7 @@
       "user_data_file": "/workdir/scripts/SetUpWinRM.ps1",
       "communicator": "winrm",
       "winrm_username": "Administrator",
+      "associate_public_ip_address": false,
       "winrm_use_ssl": true,
       "winrm_insecure": true,
       "source_ami_filter": {
