@@ -1,7 +1,10 @@
 {
   "variables": {
     "vpc_id": "{{env `VPC_ID`}}",
-    "subnet_id": "{{env `SUBNET_ID`}}"
+    "subnet_id": "{{env `SUBNET_ID`}}",
+    "build_number": "{{ env `BUILD_NUMBER`}}",
+    "git_commit" : "{{ env `GIT_COMMIT`}}",
+    "git_branch": "{{ env `GIT_BRANCH`}}"
   },
   "builders": [
     {
@@ -25,11 +28,20 @@
       },
       "ami_name": "win16-platform-ami{{timestamp}}",
       "ami_description": "Cevo Amazon Win16 Platform AMI",
-      "tags": {
+      "run_tags": {
         "Name": "Cevo Amazon Win16 Pltform AMI",
-        "Application": "common",
+        "Application": "baking-win16",
         "Owner": "someone@cevo.com.au",
         "Date": "{{isotime}}"
+      },
+      "tags": {
+        "Name": "Cevo Amazon Win16 Pltform AMI",
+        "Application": "Platform Win16",
+        "Owner": "someone@cevo.com.au",
+        "Date": "{{isotime}}",
+        "Build": "{{ user `build_number`}}",
+        "Commit": "{{ user `git_commit`}}",
+        "Branch": "{{ user `git_branch`}}"
       }
     }
   ],

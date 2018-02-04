@@ -6,3 +6,7 @@ echo "--- :checkered_flag: Authing into AWS"
 . scripts/assume-role.sh
 
 export PATH=${PATH}:/var/lib/buildkite-agent/bin
+
+export BUILD_NUMBER=${BUILDKITE_BUILD_NUMBER}
+export GIT_COMMIT=$(git rev-prase  HEAD)
+export GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
